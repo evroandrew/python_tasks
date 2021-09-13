@@ -1,7 +1,7 @@
 import argparse
 
 MSG_next = 'To process the next pair of envelopes print "yes"/"y"'
-MSG_info = 'Parameters of envelopes must be positive numbers.'
+MSG_info = 'Parameters of envelopes must be positive numbers. The program determines whether one envelope can be nested inside another.'
 MSG_result_first_in_second = 'The first envelope fits into the second.'
 MSG_result_second_in_first = 'The second envelope fits into the first.'
 MSG_result_none = "No envelope fits inside another."
