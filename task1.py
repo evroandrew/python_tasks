@@ -10,15 +10,14 @@ class Chessboard:
 
     def create_board(self):
         chessboard = ''
+        el = '*'
+        new_line = '\n'
         for row in range(self.rows):
             inner = []
-            for col in range(int(self.cols/2)):
-                inner.append('*')
-            new_line = '\n'
             if row % 2 == 1:
-                chessboard = f"{chessboard}{(''.join([f' {el}' for el in inner]))}{new_line}"
+                chessboard = f"{chessboard}{(''.join([f' {el}' for col in range(int(self.cols/2))]))}{new_line}"
             else:
-                chessboard = f"{chessboard}{(' '.join([f'{el}' for el in inner]))}{new_line}"
+                chessboard = f"{chessboard}{(' '.join([f'{el}' for col in range(int(self.cols/2))]))}{new_line}"
         return chessboard
 
     def show_board(self):
