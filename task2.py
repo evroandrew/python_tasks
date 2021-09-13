@@ -17,7 +17,7 @@ def validation(value):
         raise ValueError
     return value
 
-def Env_compare(env1, env2):
+def env_compare(env1, env2):
     if env1.length > env2.length:
         message = MSG_result_second_in_first if env1.width > env2.width else RESULT_NONE_MSG
     else:        
