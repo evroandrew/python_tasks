@@ -1,10 +1,8 @@
 from math import sqrt
-import random
 
 msg_next = 'To add new triangle print "yes"/"y"'
 msg_info = 'Enter triangle name and three sides separated by commas.'
 msg_result_none = "No triangles in the list."
-msg_name_is_exist = 'A triangle with this name already exists, so its name will be changed.'
 
 
 class Triangle:
@@ -42,26 +40,16 @@ def show_triangles(triangles):
     if type(triangles) == str:
         print(triangles)
     else:
-        for number, triangle in enumerate((sorted(triangles.items(), key=lambda item: -item[1]))):
+        for number, triangle in enumerate(sorted(triangles, key=lambda item: -item[1])):
             print(
                 f'{number+1}. [Triangle {triangle[0]}]: {round(triangle[1], 6)} cm')
 
 
-class TriangleNameExists(Exception):
-    pass
-
-
-triangles = {}
+triangles = []
 while True:
     try:
         triangle_params = input(msg_info).split(',')
         validation(triangle_params)
-        if triangle_params[0].strip() in triangles:
-            triangle_params[0] = triangle_params[0].strip() + \
-                str(random.randint(0, 100))
-            raise TriangleNameExists
-    except TriangleNameExists:
-        print(msg_name_is_exist)
     except ValueError:
         print(msg_info)
         continue
@@ -70,7 +58,7 @@ while True:
     if may_exist([triangle_params[1], triangle_params[2], triangle_params[3]]):
         triangle = Triangle(triangle_params[0].strip(
         ), triangle_params[1], triangle_params[2], triangle_params[3])
-        triangles[triangle.name] = triangle.get_square()
+        triangles.append((triangle.name, triangle.get_square()))
     else:
         print(
             f'Triangle with such sides ({triangle_params[1]}, {triangle_params[2]}, {triangle_params[3]}) does not exist')
