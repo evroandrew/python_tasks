@@ -8,8 +8,9 @@ class Chessboard:
         self.cols = cols
         self.show_board()
 
-    def show_board(self):
-        chessboard = ChessboardGenerator().create_board(self.rows, self.cols)
+    def show_board(self, el='*', cell=' '):
+        chessboard = ChessboardGenerator(
+            el, cell).create_board(self.rows, self.cols)
         print(chessboard)
 
 class ChessboardGenerator:    
@@ -19,13 +20,20 @@ class ChessboardGenerator:
         self.new_line = '\n'
     
     def create_board(self, rows, cols):        
-        chessboard = ''        
+        chessboard = ''
+        cols_range=cols//2
+        if cols%2==1:
+            cols_range+=1
+        even_line=(self.el.join([f'{self.cell}' for col in range(cols_range)]))
+        odd_line=(self.cell.join([f'{self.el}' for col in range(cols_range)]))
+        if cols%2==0:
+            even_line+=self.el
+            odd_line+=self.cell
         for row in range(rows):
-            inner = []
             if row % 2 == 1:
-                chessboard = f"{chessboard}{(''.join([f'{self.cell}{self.el}' for col in range(int(cols/2))]))}{self.new_line}"
+                chessboard = f"{chessboard}{odd_line}{self.new_line}"
             else:
-                chessboard = f"{chessboard}{(self.cell.join([f'{self.el}' for col in range(int(cols/2))]))}{self.new_line}"
+                chessboard = f"{chessboard}{even_line}{self.new_line}"
         return chessboard
 
 def validation(value):
@@ -40,6 +48,7 @@ if __name__ == '__main__':
         parser.add_argument('rows', type=validation, help='Rows number')
         parser.add_argument('cols', type=validation, help='Cols number')
         args = parser.parse_args()
-        Chessboard(args.rows, args.cols)
+        chessboard=Chessboard(args.rows, args.cols)
+        chessboard.show_board('1','2')
     except SystemExit:
         print(instructions)
