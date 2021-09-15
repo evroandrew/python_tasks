@@ -8,21 +8,25 @@ class Chessboard:
         self.cols = cols
         self.show_board()
 
-    def create_board(self):
-        chessboard = ''
-        el = '*'
-        new_line = '\n'
-        for row in range(self.rows):
+    def show_board(self):
+        chessboard = ChessboardGenerator().create_board(self.rows, self.cols)
+        print(chessboard)
+
+class ChessboardGenerator:    
+    def __init__(self, el='*', cell=' '):
+        self.el = el
+        self.cell = cell        
+        self.new_line = '\n'
+    
+    def create_board(self, rows, cols):        
+        chessboard = ''        
+        for row in range(rows):
             inner = []
             if row % 2 == 1:
-                chessboard = f"{chessboard}{(''.join([f' {el}' for col in range(int(self.cols/2))]))}{new_line}"
+                chessboard = f"{chessboard}{(''.join([f'{self.cell}{self.el}' for col in range(int(cols/2))]))}{self.new_line}"
             else:
-                chessboard = f"{chessboard}{(' '.join([f'{el}' for col in range(int(self.cols/2))]))}{new_line}"
+                chessboard = f"{chessboard}{(self.cell.join([f'{self.el}' for col in range(int(cols/2))]))}{self.new_line}"
         return chessboard
-
-    def show_board(self):
-        chessboard = self.create_board()
-        print(chessboard)
 
 def validation(value):
     value = int(value)
