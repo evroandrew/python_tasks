@@ -52,4 +52,4 @@ if __name__ == '__main__':
         args = parser.parse_args()
         chessboard = Chessboard(args.rows, args.cols)
     except SystemExit:
-        print(instructions)
+        print(msg_info)
