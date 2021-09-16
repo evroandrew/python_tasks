@@ -14,6 +14,10 @@ class Validation:
             raise ValueError
         return value
 
+    def float_validation(value):
+        value = float(value)
+        return value
+
     def triangle_arguments_validation(args):
         if len(args) != 4:
             raise ValueError
