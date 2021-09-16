@@ -1,7 +1,7 @@
 msg_info = 'To convert an integer to uppercase enter it: '
 msg_error = "no integer was entered. You should enter an integer."
 
-NUMBERS = {
+numbers = {
     0: 'zero',
     1: 'one',
     2: 'two',
