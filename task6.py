@@ -1,3 +1,7 @@
+from Validation import Validation
+from FileWorker import FileWorker
+
+
 class LuckyTickets:
     def __init__(self, func_chose):
         def lucky_moscow(ticket):
@@ -31,58 +35,28 @@ class LuckyTickets:
 
 
 msg_file_path = 'Enter file path: '
-msg_info = 'Program counts number of lucky tickets. Please, enter file path to chose counting algorithm.'
-msg_error = "File does not exist or access is denied. Please, try again."
-
-
-def path_validation(text):
-    if text == '':
-        print(msg_info)
-        return False
-    return True
-
-
-def data_validation(data):
-    if data != '':
-        return True
-    return False
-
-
-def method_validation(data, methods):
-    if data in methods:
-        return True
-    return False
-
-
-class File:
-    def __init__(self, file_path):
-        self.file_path = file_path
-
-    def read_file(self):
-        try:
-            with open(self.file_path, 'r') as file:
-                data = file.read()
-                return data
-        except FileNotFoundError:
-            print(msg_error)
-            return []
+msg_info = 'Program counts number of lucky tickets. Please, enter valid file path to chose counting algorithm.'
 
 
 def main():
-    file_path = input(msg_file_path)
-    if path_validation(file_path):
-        data = File(file_path).read_file()
-        if data_validation(data):
-            methods = {'Moscow': 0,
-                       'Piter': 1}
-            if method_validation(data, methods):
-                print(LuckyTickets(methods[data]).lucky_tickets)
+    try:
+        file_path = input(msg_file_path)
+        if Validation.string_is_empty(file_path):
+            data = FileWorker(file_path).read_file()
+            if data != '':
+                methods = {'Moscow': 0,
+                           'Piter': 1}
+                if Validation.method_validation(data, methods):
+                    print(LuckyTickets(methods[data]).lucky_tickets)
+                else:
+                    print(msg_info)
             else:
                 print(msg_info)
         else:
             print(msg_info)
-    else:
+    except ValueError:
         print(msg_info)
+
 
 if __name__ == '__main__':
     main()
