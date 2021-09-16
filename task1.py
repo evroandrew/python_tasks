@@ -1,7 +1,7 @@
 import argparse
 from Validation import Validation
 
-instructions = "In this program we can create a chessboard. For this you should enter two positive integers."
+msg_info = "In this program we can create a chessboard. For this you should enter two positive integers."
 
 
 class Chessboard:
