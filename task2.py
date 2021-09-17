@@ -9,12 +9,19 @@ msg_result_none = "No envelope fits inside another."
 
 
 class Envelope:
+    """
+    The main task of this class is to create envelopes.
+    """
+
     def __init__(self, length, width):
         self.length = max(length, width)
         self.width = min(length, width)
 
 
 def env_compare(envelope1, envelope2):
+    """
+    envelope comparison method - check if one envelope fits into another
+    """
     if envelope1.length > envelope2.length:
         message = msg_result_second_in_first if envelope1.width > envelope2.width else msg_result_none
     else:

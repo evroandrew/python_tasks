@@ -3,10 +3,16 @@ from FileWorker import FileWorker
 
 
 class LuckyTickets:
+    """
+    The main task of this class is to display number of lucky tickets with specified counting algorithm.
+    """
+
     def __init__(self, func_chose):
+        # method with moscow check
         def lucky_moscow(ticket):
             return sum(map(int, ticket[:3])) == sum(map(int, ticket[3:]))
 
+        # method with piter check
         def lucky_piter(ticket):
             return sum([int(ticket[i]) for i in range(6) if i % 2 == 0]) == \
                    sum([int(ticket[i]) for i in range(6) if i % 2 != 0])
@@ -15,6 +21,7 @@ class LuckyTickets:
         self.lucky_validation = {0: lucky_moscow,
                                  1: lucky_piter}
 
+    # successful ticket method
     def is_lucky(self, ticket):
         return self.lucky_validation[self.func_chose](ticket)
 

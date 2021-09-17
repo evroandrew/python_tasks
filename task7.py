@@ -3,14 +3,19 @@ import sys
 
 from Validation import Validation
 
-msg_info = 'To convert an integer to uppercase enter it: '
+msg_info = 'To output natural numbers row whose square is less than given: '
 msg_error = "No integer was entered. You should enter an integer."
 
 
 class NumbersRow:
+    """
+    The main task of this class is to o output natural numbers row whose square is less than given.
+    """
+
     def __init__(self, number_range):
         self.number_range = number_range
 
+    # modified str method to show a comma separated string of numbers
     def __repr__(self):
         return ', '.join([str(n) for n in range(self.number_range) if -1 < n ** 2 < self.number_range])
 

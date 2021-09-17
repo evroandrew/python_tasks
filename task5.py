@@ -3,6 +3,9 @@ msg_error = "no integer was entered. You should enter an integer."
 
 
 class NumberInWords:
+    """
+    The main task of this class is to convert an integer to uppercase.
+    """
     numbers = {
         0: 'zero',
         1: 'one',
@@ -40,10 +43,12 @@ class NumberInWords:
     def __init__(self, number):
         self.number = number
 
+    # adds rank hundreds to the string
     def add_rank_hundred(self, number_in_words, value_rank):
         number_in_words.append(self.numbers[value_rank])
         number_in_words.append(self.numbers[100])
 
+    # get an array of ranks
     def get_ranks(self):
         value = abs(self.number)
         ranks = []
@@ -55,6 +60,7 @@ class NumberInWords:
         ranks.reverse()
         return ranks
 
+    # main method to convert an integer to uppercase.
     def get_num_in_words(self):
         if self.num == 0:
             return self.numbers[0]

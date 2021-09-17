@@ -7,12 +7,16 @@ msg_result_none = "No triangles in the list."
 
 
 class Triangle:
+    """
+    The main task of this class is to create triangle.
+    """
     def __init__(self, triangle_name, side_a, side_b, side_c):
         self.name = triangle_name
         self.side_a = float(side_a)
         self.side_b = float(side_b)
         self.side_c = float(side_c)
 
+    # The area of a triangle is calculated using Heron's formula
     @property
     def square(self):
         p = (self.side_a + self.side_b + self.side_c) / 2
@@ -21,7 +25,9 @@ class Triangle:
         return area
 
 
+# check if a triangle with such sides can exist
 def triangle_may_exist(sides):
+    # check if a triangle with such sides can exist
     side_3 = max(sides)
     sides.remove(side_3)
     side_1, side_2 = sides
@@ -30,6 +36,7 @@ def triangle_may_exist(sides):
     return False
 
 
+# displaying triangles in descending order of their area
 def show_triangles(triangles):
     print('============= Triangles list: ===============')
     if type(triangles) == str:

@@ -1,4 +1,8 @@
 class Validation:
+    """
+    The main task of this class is to validate data.
+    """
+
     def __init__(self):
         pass
 

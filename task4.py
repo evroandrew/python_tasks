@@ -11,12 +11,18 @@ msg_line_search = 'Enter string to search:'
 
 
 class FileParser:
+    """
+    The main task of this class is to create file parser with functions for counting occurrences of a substring and
+    replacing a string in a file.
+    """
+
     def __init__(self, file_path, line_to_search, line_replace='', replace_count=-1):
         self.file_worker = FileWorker(file_path)
         self.line_to_search = line_to_search
         self.line_replace = line_replace
         self.replace_count = replace_count
 
+    # Replace  line in a file
     def replace_line(self):
         data = self.file_worker.read_file()
         if data != '':
@@ -30,6 +36,7 @@ class FileParser:
         else:
             print('File is empty.')
 
+    # Count the number of occurrences of a line in a text file
     def count_line(self):
         data = self.file_worker.read_file()
         if data != '':
@@ -46,6 +53,7 @@ class FileParser:
             print('File is empty.')
 
 
+# method of working with dialog code
 def worker():
     choice = input(msg_info)
     if choice != '1' and choice != '2':

@@ -7,12 +7,18 @@ msg_error = "Use any numbers."
 
 
 class RangeOfFibonacciNumbers:
+    """
+    The main task of this class is to output Fibonacci numbers within the specified range, enter range.
+    """
+
     def __init__(self, a, b):
         self.a, self.b = sorted([a, b])
 
+    # modified str method to show a comma separated string of numbers
     def __repr__(self):
         return ', '.join(str(x) for x in self.numbers() if self.a < x < self.b)
 
+    # generator that produces a number in a given range
     def numbers(self):
         result = []
         first_number, second_number = 0, 1
@@ -21,6 +27,7 @@ class RangeOfFibonacciNumbers:
             first_number, second_number = second_number, first_number + second_number
 
 
+# method of working with dialog code
 def worker():
     try:
         print(msg_info)

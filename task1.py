@@ -5,7 +5,13 @@ msg_info = "In this program we can create a chessboard. For this you should ente
 
 
 class Chessboard:
-    def __init__(self, rows=None, cols=None):
+    """
+    The main purpose of this class is to show a chessboard with two parameters:
+    rows - int, basically 0,
+    cols - int, basically 0.
+    """
+
+    def __init__(self, rows=0, cols=0):
         self.rows = rows
         self.cols = cols
         self.show_board()

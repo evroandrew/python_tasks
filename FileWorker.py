@@ -1,6 +1,10 @@
 class FileWorker:
     msg_error = "File does not exist or access is denied. Please, try again."
 
+    """
+    The main task of this class is to work with file.
+    """
+
     def __init__(self, file_path):
         self.file_path = file_path
 
