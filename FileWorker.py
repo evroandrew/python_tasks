@@ -15,7 +15,7 @@ class FileWorker:
                 return data
         except FileNotFoundError:
             print(self.msg_error)
-            return []
+            return ''
 
     def write_file(self, data):
         try:

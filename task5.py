@@ -48,7 +48,7 @@ class NumberInWords:
         number_in_words.append(self.numbers[value_rank])
         number_in_words.append(self.numbers[100])
 
-    # get an array of ranks
+    # get list of ranks
     def get_ranks(self):
         value = abs(self.number)
         ranks = []
@@ -60,16 +60,16 @@ class NumberInWords:
         ranks.reverse()
         return ranks
 
-    # main method to convert an integer to uppercase.
-    def get_num_in_words(self):
-        if self.num == 0:
+    # modified str method to convert an integer to uppercase
+    def __repr__(self):
+        if self.number == 0:
             return self.numbers[0]
-        ranks = self.get_ranks()
-        len_ranks = len(ranks)
         number_in_words = []
-        if self.num < 0:
+        if self.number < 0:
             number_in_words.append('minus')
-        for item in range(len_ranks):
+        ranks = self.get_ranks()
+        number_of_ranks = len(ranks)
+        for item in range(number_of_ranks):
             rank_hundreds = ranks[item] // 100
             if rank_hundreds != 0:
                 self.add_rank_hundred(number_in_words, rank_hundreds)
@@ -80,7 +80,7 @@ class NumberInWords:
                 else:
                     number_in_words.append(self.numbers[rank_tens // 10 * 10])
                     number_in_words.append(self.numbers[rank_tens % 10])
-            number_in_words.append(self.triads[len_ranks - 1 - item])
+            number_in_words.append(self.triads[number_of_ranks - 1 - item])
         numeric_line = ' '.join(number_in_words)
         return numeric_line
 
@@ -88,8 +88,7 @@ class NumberInWords:
 def main():
     try:
         number = int(input(msg_info))
-        number = NumberInWords(number)
-        print(number.get_num_in_words())
+        print(NumberInWords(number))
     except ValueError:
         print(msg_error)
 
