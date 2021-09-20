@@ -6,6 +6,13 @@ class Validation:
     def __init__(self):
         pass
 
+    def tickets_validation(data):
+        tickets = []
+        for item in data:
+            if len(item) == 6 and item.isdigit():
+                tickets.append(item)
+        return tickets
+
     def positive_integer_validation(value):
         value = int(value)
         if value < 0:

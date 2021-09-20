@@ -17,6 +17,17 @@ class FileWorker:
             print(self.msg_error)
             return ''
 
+    def read_file_by_line(self):
+        try:
+            with open(self.file_path, 'r') as file:
+                data = []
+                for line in file:
+                    data.append(line.strip())
+                return data
+        except FileNotFoundError:
+            print(self.msg_error)
+            return ''
+
     def write_file(self, data):
         try:
             with open(self.file_path, 'w') as f:
