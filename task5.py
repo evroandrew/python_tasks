@@ -153,19 +153,28 @@ class NumberInWords:
             units = self.generate_units_in_words(ranks[item])
             if units != '':
                 number_in_words.append(units)
-            if self.triads[number_of_ranks - 1 - item] != '':
-                triad = self.triads[number_of_ranks - 1 - item]
-                if self.mode == 'en':
-                    number_in_words.append(triad)
-                else:
-                    triad_word = ranks[item] % 10
-                    if triad_word == 0 or triad_word > 4:
-                        triad_word = 2
-                    elif triad_word != 1:
-                        triad_word = 1
-                    number_in_words.append(triad[triad_word])
+            triad = self.generate_triad_in_words(number_of_ranks, item, ranks)
+            if triad != '':
+                number_in_words.append(triad)
         numeric_line = ' '.join(number_in_words)
         return numeric_line
+
+    # get rank in words
+    def generate_triad_in_words(self, number_of_ranks, item, ranks):
+        triad = self.triads[number_of_ranks - 1 - item]
+        if ranks[item] == 0:
+            return ''
+        if triad != '':
+            if self.mode == 'en':
+                return triad
+            else:
+                triad_word = ranks[item] % 10
+                if triad_word == 0 or triad_word > 4:
+                    triad_word = 2
+                elif triad_word != 1:
+                    triad_word = 1
+                return triad[triad_word]
+        return ''
 
 
 def main():

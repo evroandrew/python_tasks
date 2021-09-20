@@ -46,6 +46,14 @@ class TestNumberInWords(unittest.TestCase):
         self.assertEqual(task5.NumberInWords(0, 'ru').generate_units_in_words(13), 'тринадцать')
         self.assertEqual(task5.NumberInWords(0, 'ru').generate_units_in_words(42), 'сорок два')
 
+    def test_generate_triad_in_words(self):
+        self.assertEqual(task5.NumberInWords().generate_triad_in_words(2, 0, [234, 981]), 'thousand')
+        self.assertEqual(task5.NumberInWords().generate_triad_in_words(1, 0, [234]), '')
+        self.assertEqual(task5.NumberInWords().generate_triad_in_words(3, 1, [234, 000, 981]), '')
+        self.assertEqual(task5.NumberInWords(0, 'ru').generate_triad_in_words(2, 0, [234, 981]), 'тысячи')
+        self.assertEqual(task5.NumberInWords(0, 'ru').generate_triad_in_words(1, 0, [234]), '')
+        self.assertEqual(task5.NumberInWords(0, 'ru').generate_triad_in_words(3, 1, [234, 000, 981]), '')
+
 
 if __name__ == '__main__':
     unittest.main()
