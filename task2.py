@@ -22,6 +22,8 @@ def env_compare(envelope1, envelope2):
     """
     envelope comparison method - check if one envelope fits into another
     """
+    if envelope1.length == envelope2.length and envelope1.width == envelope2.width:
+        return msg_result_none + " Envelope are the same."
     if envelope1.length > envelope2.length:
         message = msg_result_second_in_first if envelope1.width > envelope2.width else msg_result_none
     else:
