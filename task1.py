@@ -11,32 +11,32 @@ class Chessboard:
     cols - int, basically 0.
     """
 
-    def __init__(self, rows=0, cols=0):
+    def __init__(self, rows=0, cols=0, cell1='*', cell2=' '):
         self.rows = rows
         self.cols = cols
-        self.show_board()
+        self.cell1 = cell1
+        self.cell2 = cell2
 
-    def show_board(self, el='*', cell=' '):
-        chessboard = ChessboardGenerator(
-            el, cell).create_board(self.rows, self.cols)
+    def show_board(self):
+        chessboard = ChessboardGenerator(self.cell1, self.cell2).create_board(self.rows, self.cols)
         print(chessboard)
 
 
 class ChessboardGenerator:
-    def __init__(self, el='*', cell=' '):
-        self.el = el
-        self.cell = cell
+    def __init__(self, cell1='*', cell2=' '):
+        self.cell1 = str(cell1)
+        self.cell2 = str(cell2)
         self.new_line = '\n'
 
     def create_lines(self, cols):
         cols_range = cols // 2
         if cols % 2 == 1:
             cols_range += 1
-        even_line = (self.el.join([f'{self.cell}' for col in range(cols_range)]))
-        odd_line = (self.cell.join([f'{self.el}' for col in range(cols_range)]))
+        even_line = (self.cell2.join([f'{self.cell1}' for col in range(cols_range)]))
+        odd_line = (self.cell1.join([f'{self.cell2}' for col in range(cols_range)]))
         if cols % 2 == 0:
-            even_line += self.el
-            odd_line += self.cell
+            even_line += self.cell2
+            odd_line += self.cell1
         return odd_line, even_line
 
     def create_board(self, rows, cols):
@@ -56,6 +56,6 @@ if __name__ == '__main__':
         parser.add_argument('rows', type=Validation.positive_integer_validation, help='Rows number')
         parser.add_argument('cols', type=Validation.positive_integer_validation, help='Cols number')
         args = parser.parse_args()
-        chessboard = Chessboard(args.rows, args.cols)
+        Chessboard(args.rows, args.cols).show_board()
     except SystemExit:
         print(msg_info)
