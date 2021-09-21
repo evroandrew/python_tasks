@@ -24,13 +24,13 @@ class LuckyTickets:
 
         self.func_chose = func_chose
         self.tickets = tickets
-        self.lucky_validation = {0: lucky_moscow,
-                                 1: lucky_piter,
-                                 2: lucky_piter_task}
+        self.lucky_validation = {'Moscow': lucky_moscow,
+                                 'Piter_alternative': lucky_piter,
+                                 'Piter': lucky_piter_task}
 
-        self.specified_check = {0: 'Moscow',
-                                1: 'Piter',
-                                2: 'Piter task'}
+        self.specified_check = {'Moscow': 'Moscow',
+                                'Piter_alternative': 'Piter',
+                                'Piter': 'Piter task'}
 
     # successful ticket method
     def is_lucky(self, ticket):
@@ -61,12 +61,10 @@ def main():
         if not Validation.string_is_empty(file_path):
             data = FileWorker(file_path).read_file_by_line()
             if data != '':
-                methods = {'Moscow': 0,
-                           'Piter': 2,
-                           'Piter_alternative': 1}
+                methods = ['Moscow', 'Piter', 'Piter_alternative']
                 if Validation.method_validation(data[0], methods):
                     tickets = Validation.tickets_validation(data)
-                    print(LuckyTickets(methods[data[0]], tickets).lucky_tickets)
+                    print(LuckyTickets(data[0], tickets).lucky_tickets)
                 else:
                     print(msg_info)
             else:
