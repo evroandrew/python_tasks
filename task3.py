@@ -10,6 +10,7 @@ class Triangle:
     """
     The main task of this class is to create triangle.
     """
+
     def __init__(self, triangle_name, side_a, side_b, side_c):
         self.name = triangle_name
         self.side_a = float(side_a)
@@ -23,6 +24,10 @@ class Triangle:
         area = sqrt(p * (p - self.side_a) *
                     (p - self.side_b) * (p - self.side_c))
         return area
+
+    @property
+    def triangle_representation(self):
+        return self.name, self.square
 
 
 # check if a triangle with such sides can exist
@@ -38,13 +43,14 @@ def triangle_may_exist(sides):
 
 # displaying triangles in descending order of their area
 def show_triangles(triangles):
-    print('============= Triangles list: ===============')
-    if type(triangles) == str:
-        print(triangles)
+    triangles_list = ['============= Triangles list: ===============']
+    if len(triangles) == 0:
+        return msg_result_none
     else:
         for number, triangle in enumerate(sorted(triangles, key=lambda item: -item[1])):
-            print(
+            triangles_list.append(
                 f'{number + 1}. [Triangle {triangle[0]}]: {round(triangle[1], 6)} cm')
+    return triangles_list
 
 
 if __name__ == '__main__':
@@ -61,7 +67,7 @@ if __name__ == '__main__':
         if triangle_may_exist([triangle_params[1], triangle_params[2], triangle_params[3]]):
             triangle = Triangle(triangle_params[0].strip(
             ), triangle_params[1], triangle_params[2], triangle_params[3])
-            triangles.append((triangle.name, triangle.square))
+            triangles.append(triangle.triangle_representation)
         else:
             print(
                 f'Triangle with such sides ({triangle_params[1]}, {triangle_params[2]}, {triangle_params[3]}) does '
@@ -69,7 +75,5 @@ if __name__ == '__main__':
         answer_next = input(msg_next).lower()
         if answer_next != 'yes' and answer_next != 'y':
             break
-    if len(triangles) > 0:
-        show_triangles(triangles)
-    else:
-        show_triangles(msg_result_none)
+    for line in show_triangles(triangles):
+        print(line)
