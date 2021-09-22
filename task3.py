@@ -1,5 +1,4 @@
 from math import sqrt
-from Validation import Validation
 
 msg_next = 'To add new triangle print "yes"/"y"'
 msg_info = 'Enter triangle name and three sides separated by commas.'
@@ -27,30 +26,29 @@ class Triangle:
 
     @property
     def triangle_representation(self):
-        return self.name, self.square
+        return self.name, self.square  # check if a triangle with such sides can exist
 
+    @staticmethod
+    def triangle_may_exist(sides):
+        # check if a triangle with such sides can exist
+        side_3 = max(sides)
+        sides.remove(side_3)
+        side_1, side_2 = sides
+        if side_1 + side_2 > side_3:
+            return True
+        return False
 
-# check if a triangle with such sides can exist
-def triangle_may_exist(sides):
-    # check if a triangle with such sides can exist
-    side_3 = max(sides)
-    sides.remove(side_3)
-    side_1, side_2 = sides
-    if side_1 + side_2 > side_3:
-        return True
-    return False
-
-
-# displaying triangles in descending order of their area
-def show_triangles(triangles):
-    triangles_list = '============= Triangles list: ==============='
-    new_line = '\n'
-    if len(triangles) == 0:
-        return msg_result_none
-    else:
-        for number, triangle in enumerate(sorted(triangles, key=lambda item: -item[1])):
-            triangles_list = f'{triangles_list}{new_line}{number + 1}. [Triangle {triangle[0]}]: {round(triangle[1], 6)} cm'
-        return triangles_list
+    @staticmethod
+    def show_triangles(triangles):
+        # displaying triangles in descending order of their area
+        triangles_list = '============= Triangles list: ==============='
+        new_line = '\n'
+        if len(triangles) == 0:
+            return msg_result_none
+        else:
+            for number, triangle in enumerate(sorted(triangles, key=lambda item: -item[1])):
+                triangles_list = f'{triangles_list}{new_line}{number + 1}. [Triangle {triangle[0]}]: {round(triangle[1], 6)} cm'
+            return triangles_list
 
 
 def main():
@@ -65,7 +63,7 @@ def main():
             continue
         triangle_params[1], triangle_params[2], triangle_params[3] = float(
             triangle_params[1]), float(triangle_params[2]), float(triangle_params[3])
-        if triangle_may_exist([triangle_params[1], triangle_params[2], triangle_params[3]]):
+        if Triangle.triangle_may_exist([triangle_params[1], triangle_params[2], triangle_params[3]]):
             triangle = Triangle(triangle_params[0], triangle_params[1], triangle_params[2], triangle_params[3])
             triangles.append(triangle.triangle_representation)
         else:
@@ -75,7 +73,7 @@ def main():
         answer_next = input(msg_next).lower()
         if answer_next != 'yes' and answer_next != 'y':
             break
-    print(show_triangles(triangles))
+    print(Triangle.show_triangles(triangles))
 
 
 if __name__ == '__main__':

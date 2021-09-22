@@ -1,6 +1,5 @@
 import argparse
 import sys
-
 from Validation import Validation
 
 msg_info = 'To output natural numbers row whose square is less than given: '

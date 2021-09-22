@@ -13,10 +13,10 @@ class TestTriangle(unittest.TestCase):
         self.assertEqual(task3.Triangle('', 3, 3, 3).square, 3.897114317029974)
 
     def test_triangle_may_exist(self):
-        self.assertTrue(task3.triangle_may_exist([3, 4, 5]))
-        self.assertTrue(task3.triangle_may_exist([1, 2, 2]))
-        self.assertTrue(task3.triangle_may_exist([3, 3, 3]))
-        self.assertFalse(task3.triangle_may_exist([1, 1, 2]))
+        self.assertTrue(task3.Triangle.triangle_may_exist([3, 4, 5]))
+        self.assertTrue(task3.Triangle.triangle_may_exist([1, 2, 2]))
+        self.assertTrue(task3.Triangle.triangle_may_exist([3, 3, 3]))
+        self.assertFalse(task3.Triangle.triangle_may_exist([1, 1, 2]))
 
     def test_triangle_representation(self):
         self.assertEqual(task3.Triangle('a', 3, 4, 5).triangle_representation, ('a', 6.0))
@@ -32,16 +32,16 @@ class TestTriangle(unittest.TestCase):
         triangle3_repr = '[Triangle c]: 3.897114 cm'
         triangles_list = '============= Triangles list: ==============='
         new_line = '\n'
-        self.assertEqual(task3.show_triangles([triangle1.triangle_representation, triangle2.triangle_representation]),
+        self.assertEqual(task3.Triangle.show_triangles([triangle1.triangle_representation, triangle2.triangle_representation]),
                          f'{triangles_list}{new_line}1. {triangle1_repr}{new_line}2. {triangle2_repr}')
-        self.assertEqual(task3.show_triangles([triangle2.triangle_representation, triangle3.triangle_representation]),
+        self.assertEqual(task3.Triangle.show_triangles([triangle2.triangle_representation, triangle3.triangle_representation]),
                          f'{triangles_list}{new_line}1. {triangle3_repr}{new_line}2. {triangle2_repr}')
-        self.assertEqual(task3.show_triangles([triangle1.triangle_representation, triangle3.triangle_representation]),
+        self.assertEqual(task3.Triangle.show_triangles([triangle1.triangle_representation, triangle3.triangle_representation]),
                          f'{triangles_list}{new_line}1. {triangle1_repr}{new_line}2. {triangle3_repr}')
-        self.assertEqual(task3.show_triangles(
+        self.assertEqual(task3.Triangle.show_triangles(
             [triangle2.triangle_representation, triangle3.triangle_representation, triangle1.triangle_representation]),
             f'{triangles_list}{new_line}1. {triangle1_repr}{new_line}2. {triangle3_repr}{new_line}3. {triangle2_repr}')
-        self.assertEqual(task3.show_triangles([]), 'No triangles in the list.')
+        self.assertEqual(task3.Triangle.show_triangles([]), 'No triangles in the list.')
 
 
 if __name__ == '__main__':
