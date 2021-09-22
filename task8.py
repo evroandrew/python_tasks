@@ -27,32 +27,6 @@ class RangeOfFibonacciNumbers:
             first_number, second_number = second_number, first_number + second_number
 
 
-# method of working with dialog code
-def worker():
-    try:
-        print(msg_info)
-        a = 'abs'
-        while a == 'abs':
-            try:
-                a = Validation.float_validation(input('Enter first argument of range: '))
-            except ValueError:
-                exc = sys.exc_info()[1]
-                print(exc)
-                print('Use any numbers, instead of it.')
-        b = 'abs'
-        while b == 'abs':
-            try:
-                b = Validation.float_validation(input('Enter second argument of range: '))
-            except ValueError:
-                exc = sys.exc_info()[1]
-                print(exc)
-                print('Use any numbers, instead of it.')
-        print(RangeOfFibonacciNumbers(a, b))
-    except ValueError:
-        exc = sys.exc_info()[1]
-        print(f'Use any numbers, instead of: {exc}')
-
-
 def main():
     try:
         parser = argparse.ArgumentParser(description='Output Fibonacci numbers within the specified range')
@@ -62,7 +36,28 @@ def main():
                             help='argument b for specified range')
         args = parser.parse_args()
         if args.b is None:
-            worker()
+            try:
+                print(msg_info)
+                a = 'abs'
+                while a == 'abs':
+                    try:
+                        a = Validation.float_validation(input('Enter first argument of range: '))
+                    except ValueError:
+                        exc = sys.exc_info()[1]
+                        print(exc)
+                        print('Use any numbers, instead of it.')
+                b = 'abs'
+                while b == 'abs':
+                    try:
+                        b = Validation.float_validation(input('Enter second argument of range: '))
+                    except ValueError:
+                        exc = sys.exc_info()[1]
+                        print(exc)
+                        print('Use any numbers, instead of it.')
+                print(RangeOfFibonacciNumbers(a, b))
+            except ValueError:
+                exc = sys.exc_info()[1]
+                print(f'Use any numbers, instead of: {exc}')
         else:
             print(RangeOfFibonacciNumbers(args.a, args.b))
     except ValueError:

@@ -53,7 +53,7 @@ def show_triangles(triangles):
     return triangles_list
 
 
-if __name__ == '__main__':
+def main():
     triangles = []
     while True:
         try:
@@ -65,8 +65,7 @@ if __name__ == '__main__':
         triangle_params[1], triangle_params[2], triangle_params[3] = float(
             triangle_params[1]), float(triangle_params[2]), float(triangle_params[3])
         if triangle_may_exist([triangle_params[1], triangle_params[2], triangle_params[3]]):
-            triangle = Triangle(triangle_params[0].strip(
-            ), triangle_params[1], triangle_params[2], triangle_params[3])
+            triangle = Triangle(triangle_params[0], triangle_params[1], triangle_params[2], triangle_params[3])
             triangles.append(triangle.triangle_representation)
         else:
             print(
@@ -77,3 +76,7 @@ if __name__ == '__main__':
             break
     for line in show_triangles(triangles):
         print(line)
+
+
+if __name__ == '__main__':
+    main()

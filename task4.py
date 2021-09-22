@@ -72,8 +72,7 @@ def worker():
         line_replace = input(msg_line_replace)
         data = FileWorker(file_path).read_file()
         new_data = DataParser(data, line_to_search, line_replace).replace_line()
-        if new_data != '':
-            FileWorker(file_path).write_file(new_data)
+        FileWorker(file_path).write_file(new_data)
 
 
 def main():

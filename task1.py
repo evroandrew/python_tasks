@@ -50,7 +50,7 @@ class ChessboardGenerator:
         return chessboard
 
 
-if __name__ == '__main__':
+def main():
     try:
         parser = argparse.ArgumentParser(description='Enter two arguments - rows and cols for chessboard')
         parser.add_argument('rows', type=Validation.positive_integer_validation, help='Rows number')
@@ -59,3 +59,7 @@ if __name__ == '__main__':
         Chessboard(args.rows, args.cols).show_board()
     except SystemExit:
         print(msg_info)
+
+
+if __name__ == '__main__':
+    main()

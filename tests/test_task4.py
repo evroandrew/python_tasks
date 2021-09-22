@@ -17,6 +17,14 @@ class TestFileParser(unittest.TestCase):
         self.assertEqual(task4.DataParser('text', 'e', '').replace_line(), 'txt')
         self.assertEqual(task4.DataParser('text', 'x', '').replace_line(), 'tet')
         self.assertEqual(task4.DataParser('text', 'a', '').replace_line(), 'text')
+        self.assertEqual(task4.DataParser('text', 't', 'a', 1).replace_line(), 'aext')
+        self.assertEqual(task4.DataParser('texte', 'e', 'a', 1).replace_line(), 'taxte')
+        self.assertEqual(task4.DataParser('textx', 'x', 'a', 1).replace_line(), 'teatx')
+        self.assertEqual(task4.DataParser('text', 'a', 'a', 1).replace_line(), 'text')
+        self.assertEqual(task4.DataParser('text', 't', '', 1).replace_line(), 'ext')
+        self.assertEqual(task4.DataParser('texte', 'e', '', 1).replace_line(), 'txte')
+        self.assertEqual(task4.DataParser('textx', 'x', '', 1).replace_line(), 'tetx')
+        self.assertEqual(task4.DataParser('text', 'a', '', 1).replace_line(), 'text')
 
     def test_count_line(self):
         self.assertEqual(task4.DataParser('text', 't').count_line(), 2)
@@ -27,6 +35,7 @@ class TestFileParser(unittest.TestCase):
         self.assertEqual(task4.DataParser('text', 'e', 'a').count_line(), 1)
         self.assertEqual(task4.DataParser('text', 'x', 'a').count_line(), 1)
         self.assertEqual(task4.DataParser('text', 'a', 'a').count_line(), 0)
+        self.assertEqual(task4.DataParser('', 'a', 'a').count_line(), 0)
 
 
 if __name__ == '__main__':

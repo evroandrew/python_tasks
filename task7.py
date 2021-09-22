@@ -20,7 +20,7 @@ class NumbersRow:
         return ', '.join([str(n) for n in range(self.number_range) if -1 < n ** 2 < self.number_range])
 
 
-if __name__ == '__main__':
+def main():
     try:
         parser = argparse.ArgumentParser(description='Output natural numbers row')
         parser.add_argument('number_range', type=Validation.positive_integer_validation,
@@ -30,3 +30,7 @@ if __name__ == '__main__':
     except ValueError:
         exc = sys.exc_info()[1]
         print(f'Use positive integer, instead of: {exc}')
+
+
+if __name__ == '__main__':
+    main()
