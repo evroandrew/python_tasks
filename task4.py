@@ -10,37 +10,36 @@ msg_line_replace = 'Enter string to replace:'
 msg_line_search = 'Enter string to search:'
 
 
-class FileParser:
+class DataParser:
     """
     The main task of this class is to create file parser with functions for counting occurrences of a substring and
     replacing a string in a file.
     """
 
-    def __init__(self, file_path, line_to_search, line_replace='', replace_count=-1):
-        self.file_worker = FileWorker(file_path)
+    def __init__(self, data, line_to_search, line_replace='', replace_count=-1):
+        self.data = data
         self.line_to_search = line_to_search
         self.line_replace = line_replace
         self.replace_count = replace_count
 
     # Replace  line in a file
     def replace_line(self):
-        data = self.file_worker.read_file()
-        if data != '':
+        if self.data != '':
             if self.replace_count == -1:
-                data = data.replace(self.line_to_search, self.line_replace)
+                data = self.data.replace(self.line_to_search, self.line_replace)
             else:
-                data = data.replace(
+                data = self.data.replace(
                     self.line_to_search, self.line_replace, self.replace_count)
-            self.file_worker.write_file(data)
             print(f'The text {self.line_to_search} was replaced in the file.')
+            return data
         else:
             print('File is empty.')
+            return ''
 
     # Count the number of occurrences of a line in a text file
     def count_line(self):
-        data = self.file_worker.read_file()
-        if data != '':
-            counter = data.count(self.line_to_search)
+        if self.data != '':
+            counter = self.data.count(self.line_to_search)
             if counter > 1:
                 print(
                     f'The text {self.line_to_search} was found in the file {counter} times.')
@@ -49,8 +48,10 @@ class FileParser:
                     f'The text {self.line_to_search} was found in the file {counter} time.')
             else:
                 print(f'The text {self.line_to_search} was not found in the file.')
+            return counter
         else:
             print('File is empty.')
+            return 0
 
 
 # method of working with dialog code
@@ -65,10 +66,14 @@ def worker():
     if Validation.string_is_empty(line_to_search):
         worker()
     if choice == '1':
-        FileParser(file_path, line_to_search).count_line()
+        data = FileWorker(file_path).read_file()
+        DataParser(data, line_to_search).count_line()
     else:
         line_replace = input(msg_line_replace)
-        FileParser(file_path, line_to_search, line_replace).replace_line()
+        data = FileWorker(file_path).read_file()
+        new_data = DataParser(data, line_to_search, line_replace).replace_line()
+        if new_data != '':
+            FileWorker(file_path).write_file(new_data)
 
 
 def main():
@@ -83,9 +88,13 @@ def main():
         if args.file_path == '' or args.line_search == '':
             raise ValueError
         if args.line_replace == 42:
-            FileParser(args.file_path, args.line_search).count_line()
+            data = FileWorker(args.file_path).read_file()
+            DataParser(data, args.line_search).count_line()
         else:
-            FileParser(args.file_path, args.line_search, args.line_replace).replace_line()
+            data = FileWorker(args.file_path).read_file()
+            new_data = DataParser(data, args.line_search, args.line_replace).replace_line()
+            if new_data != '':
+                FileWorker(args.file_path).write_file(new_data)
     except ValueError:
         worker()
 
