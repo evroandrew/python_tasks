@@ -1,6 +1,5 @@
 import argparse
 import sys
-from Validation import Validation
 
 msg_info = 'To output Fibonacci numbers within the specified range, enter range. '
 msg_error = "Use any numbers."
@@ -30,10 +29,8 @@ class RangeOfFibonacciNumbers:
 def main():
     try:
         parser = argparse.ArgumentParser(description='Output Fibonacci numbers within the specified range')
-        parser.add_argument('a', nargs='?', type=Validation.float_validation,
-                            help='argument a for specified range')
-        parser.add_argument('b', nargs='?', type=Validation.float_validation,
-                            help='argument b for specified range')
+        parser.add_argument('a', nargs='?', type=float, help='argument a for specified range')
+        parser.add_argument('b', nargs='?', type=float, help='argument b for specified range')
         args = parser.parse_args()
         if args.b is None:
             try:
@@ -41,7 +38,7 @@ def main():
                 a = 'abs'
                 while a == 'abs':
                     try:
-                        a = Validation.float_validation(input('Enter first argument of range: '))
+                        a = float(input('Enter first argument of range: '))
                     except ValueError:
                         exc = sys.exc_info()[1]
                         print(exc)
@@ -49,7 +46,7 @@ def main():
                 b = 'abs'
                 while b == 'abs':
                     try:
-                        b = Validation.float_validation(input('Enter second argument of range: '))
+                        b = float(input('Enter second argument of range: '))
                     except ValueError:
                         exc = sys.exc_info()[1]
                         print(exc)

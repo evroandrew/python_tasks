@@ -60,10 +60,12 @@ def worker():
     if choice != '1' and choice != '2':
         return
     file_path = input(msg_file_path)
-    if Validation.string_is_empty(file_path):
+    if file_path == '':
+        print('You entered empty line')
         worker()
     line_to_search = input(msg_line_count)
-    if Validation.string_is_empty(line_to_search):
+    if line_to_search == '':
+        print('You entered empty line')
         worker()
     if choice == '1':
         data = FileWorker(file_path).read_file()
@@ -77,15 +79,16 @@ def worker():
 
 def main():
     try:
+        V = Validation()
         parser = argparse.ArgumentParser(
-            description='Enter arguments - file path, and text for count or text to search and text to replace')
-        parser.add_argument('file_path', nargs='?', default='', type=Validation.string_validation, help='file path')
-        parser.add_argument('line_search', nargs='?', default='', type=Validation.string_validation,
+            description='Enter arguments - file path, and text for count or text to search and text to replace',
+            exit_on_error=False)
+        parser.add_argument('file_path', nargs='?', default='', type=V.string_argument_validation,
+                            help='file path')
+        parser.add_argument('line_search', nargs='?', default='', type=V.string_argument_validation,
                             help='line to search')
         parser.add_argument('line_replace', nargs='?', default=42, help='line replace')
         args = parser.parse_args()
-        if args.file_path == '' or args.line_search == '':
-            raise ValueError
         if args.line_replace == 42:
             data = FileWorker(args.file_path).read_file()
             DataParser(data, args.line_search).count_line()
@@ -94,7 +97,7 @@ def main():
             new_data = DataParser(data, args.line_search, args.line_replace).replace_line()
             if new_data != '':
                 FileWorker(args.file_path).write_file(new_data)
-    except ValueError:
+    except argparse.ArgumentError:
         worker()
 
 

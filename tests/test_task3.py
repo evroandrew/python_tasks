@@ -27,16 +27,20 @@ class TestTriangle(unittest.TestCase):
         triangle1 = task3.Triangle('a', 3, 4, 5)
         triangle2 = task3.Triangle('b', 1, 2, 2)
         triangle3 = task3.Triangle('c', 3, 3, 3)
+        triangle1_repr = '[Triangle a]: 6.0 cm'
+        triangle2_repr = '[Triangle b]: 0.968246 cm'
+        triangle3_repr = '[Triangle c]: 3.897114 cm'
         triangles_list = '============= Triangles list: ==============='
+        new_line = '\n'
         self.assertEqual(task3.show_triangles([triangle1.triangle_representation, triangle2.triangle_representation]),
-                         [triangles_list, '1. [Triangle a]: 6.0 cm', '2. [Triangle b]: 0.968246 cm'])
+                         f'{triangles_list}{new_line}1. {triangle1_repr}{new_line}2. {triangle2_repr}')
         self.assertEqual(task3.show_triangles([triangle2.triangle_representation, triangle3.triangle_representation]),
-                         [triangles_list, '1. [Triangle c]: 3.897114 cm', '2. [Triangle b]: 0.968246 cm'])
+                         f'{triangles_list}{new_line}1. {triangle3_repr}{new_line}2. {triangle2_repr}')
         self.assertEqual(task3.show_triangles([triangle1.triangle_representation, triangle3.triangle_representation]),
-                         [triangles_list, '1. [Triangle a]: 6.0 cm', '2. [Triangle c]: 3.897114 cm'])
+                         f'{triangles_list}{new_line}1. {triangle1_repr}{new_line}2. {triangle3_repr}')
         self.assertEqual(task3.show_triangles(
             [triangle2.triangle_representation, triangle3.triangle_representation, triangle1.triangle_representation]),
-            [triangles_list, '1. [Triangle a]: 6.0 cm', '2. [Triangle c]: 3.897114 cm', '3. [Triangle b]: 0.968246 cm'])
+            f'{triangles_list}{new_line}1. {triangle1_repr}{new_line}2. {triangle3_repr}{new_line}3. {triangle2_repr}')
         self.assertEqual(task3.show_triangles([]), 'No triangles in the list.')
 
 

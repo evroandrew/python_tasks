@@ -58,12 +58,15 @@ msg_info = 'Program counts number of lucky tickets. Please, enter valid file pat
 def main():
     try:
         file_path = input(msg_file_path)
-        if not Validation.string_is_empty(file_path):
+        if file_path != '':
             data = FileWorker(file_path).read_file_by_line()
             if data != '':
                 methods = ['Moscow', 'Piter', 'Piter_alternative']
-                if Validation.method_validation(data[0], methods):
-                    tickets = Validation.tickets_validation(data)
+                if data[0] in methods:
+                    tickets = []
+                    for item in data:
+                        if len(item) == 6 and item.isdigit():
+                            tickets.append(item)
                     print(LuckyTickets(data[0], tickets).lucky_tickets)
                 else:
                     print(msg_info)

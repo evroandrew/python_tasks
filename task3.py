@@ -43,14 +43,14 @@ def triangle_may_exist(sides):
 
 # displaying triangles in descending order of their area
 def show_triangles(triangles):
-    triangles_list = ['============= Triangles list: ===============']
+    triangles_list = '============= Triangles list: ==============='
+    new_line = '\n'
     if len(triangles) == 0:
         return msg_result_none
     else:
         for number, triangle in enumerate(sorted(triangles, key=lambda item: -item[1])):
-            triangles_list.append(
-                f'{number + 1}. [Triangle {triangle[0]}]: {round(triangle[1], 6)} cm')
-    return triangles_list
+            triangles_list = f'{triangles_list}{new_line}{number + 1}. [Triangle {triangle[0]}]: {round(triangle[1], 6)} cm'
+        return triangles_list
 
 
 def main():
@@ -58,7 +58,8 @@ def main():
     while True:
         try:
             triangle_params = input(msg_info).split(',')
-            Validation.triangle_arguments_validation(triangle_params)
+            if len(triangle_params) != 4 or any(float(side) < 0 for side in triangle_params[1:]):
+                raise ValueError
         except ValueError:
             print(msg_info)
             continue
@@ -74,8 +75,7 @@ def main():
         answer_next = input(msg_next).lower()
         if answer_next != 'yes' and answer_next != 'y':
             break
-    for line in show_triangles(triangles):
-        print(line)
+    print(show_triangles(triangles))
 
 
 if __name__ == '__main__':

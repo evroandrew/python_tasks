@@ -1,5 +1,6 @@
 class FileWorker:
-    msg_error = "File does not exist or access is denied. Please, try again."
+    msg_file_not_found = "File does not exist. Please, try again."
+    msg_permission = "Access is denied. Please, try again."
 
     """
     The main task of this class is to work with file.
@@ -14,7 +15,10 @@ class FileWorker:
                 data = file.read()
                 return data
         except FileNotFoundError:
-            print(self.msg_error)
+            print(self.msg_file_not_found)
+            return ''
+        except PermissionError:
+            print(self.msg_permission)
             return ''
 
     def read_file_by_line(self):
@@ -25,7 +29,10 @@ class FileWorker:
                     data.append(line.strip())
                 return data
         except FileNotFoundError:
-            print(self.msg_error)
+            print(self.msg_file_not_found)
+            return ''
+        except PermissionError:
+            print(self.msg_permission)
             return ''
 
     def write_file(self, data):
@@ -33,4 +40,7 @@ class FileWorker:
             with open(self.file_path, 'w') as f:
                 f.write(data)
         except FileNotFoundError:
-            print(self.msg_error)
+            print(self.msg_file_not_found)
+        except PermissionError:
+            print(self.msg_permission)
+            return ''

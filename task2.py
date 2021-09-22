@@ -34,10 +34,11 @@ def env_compare(envelope1, envelope2):
 def main():
     while True:
         try:
-            length1 = Validation.positive_float_validation(input('Enter a:'))
-            width1 = Validation.positive_float_validation(input('Enter b:'))
-            length2 = Validation.positive_float_validation(input('Enter c:'))
-            width2 = Validation.positive_float_validation(input('Enter d:'))
+            V = Validation()
+            length1 = V.positive_float_validation(input('Enter a:'))
+            width1 = V.positive_float_validation(input('Enter b:'))
+            length2 = V.positive_float_validation(input('Enter c:'))
+            width2 = V.positive_float_validation(input('Enter d:'))
         except ValueError:
             print(msg_info)
             continue
