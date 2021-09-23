@@ -46,7 +46,7 @@ def main():
         env2 = Envelope(length2, width2)
         print(Envelope.env_compare(env1, env2))
         answer_next = input(msg_next).lower()
-        if answer_next != 'yes' and answer_next != 'y':
+        if answer_next not in ['yes', 'y']:
             break
 
 

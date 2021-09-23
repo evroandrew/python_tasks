@@ -71,7 +71,7 @@ def main():
                 f'Triangle with such sides ({triangle_params[1]}, {triangle_params[2]}, {triangle_params[3]}) does '
                 f'not exist')
         answer_next = input(msg_next).lower()
-        if answer_next != 'yes' and answer_next != 'y':
+        if answer_next not in ['yes', 'y']:
             break
     print(Triangle.show_triangles(triangles))
 

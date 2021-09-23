@@ -95,8 +95,7 @@ def main():
         else:
             data = FileWorker(args.file_path).read_file()
             new_data = DataParser(data, args.line_search, args.line_replace).replace_line()
-            if new_data != '':
-                FileWorker(args.file_path).write_file(new_data)
+            FileWorker(args.file_path).write_file(new_data)
     except argparse.ArgumentError:
         worker()
 
