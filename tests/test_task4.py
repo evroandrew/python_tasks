@@ -9,22 +9,32 @@ class TestFileParser(unittest.TestCase):
     """
 
     def test_replace_line(self):
-        self.assertEqual(task4.DataParser('text', 't', 'a').replace_line(), 'aexa')
-        self.assertEqual(task4.DataParser('text', 'e', 'a').replace_line(), 'taxt')
-        self.assertEqual(task4.DataParser('text', 'x', 'a').replace_line(), 'teat')
-        self.assertEqual(task4.DataParser('text', 'a', 'a').replace_line(), 'text')
-        self.assertEqual(task4.DataParser('text', 't', '').replace_line(), 'ex')
-        self.assertEqual(task4.DataParser('text', 'e', '').replace_line(), 'txt')
-        self.assertEqual(task4.DataParser('text', 'x', '').replace_line(), 'tet')
-        self.assertEqual(task4.DataParser('text', 'a', '').replace_line(), 'text')
-        self.assertEqual(task4.DataParser('text', 't', 'a', 1).replace_line(), 'aext')
-        self.assertEqual(task4.DataParser('texte', 'e', 'a', 1).replace_line(), 'taxte')
-        self.assertEqual(task4.DataParser('textx', 'x', 'a', 1).replace_line(), 'teatx')
-        self.assertEqual(task4.DataParser('text', 'a', 'a', 1).replace_line(), 'text')
-        self.assertEqual(task4.DataParser('text', 't', '', 1).replace_line(), 'ext')
-        self.assertEqual(task4.DataParser('texte', 'e', '', 1).replace_line(), 'txte')
-        self.assertEqual(task4.DataParser('textx', 'x', '', 1).replace_line(), 'tetx')
-        self.assertEqual(task4.DataParser('text', 'a', '', 1).replace_line(), 'text')
+        test_cases = [
+            {'arguments': {'data': 'text', 'line_to_search': 't', 'line_replace': 'a'}, 'excepted_result': 'aexa'},
+            {'arguments': {'data': 'text', 'line_to_search': 'e', 'line_replace': 'a'}, 'excepted_result': 'taxt'},
+            {'arguments': {'data': 'text', 'line_to_search': 'x', 'line_replace': 'a'}, 'excepted_result': 'teat'},
+            {'arguments': {'data': 'text', 'line_to_search': 'a', 'line_replace': 'a'}, 'excepted_result': 'text'},
+            {'arguments': {'data': 'text', 'line_to_search': 't', 'line_replace': ''}, 'excepted_result': 'ex'},
+            {'arguments': {'data': 'text', 'line_to_search': 'e', 'line_replace': ''}, 'excepted_result': 'txt'},
+            {'arguments': {'data': 'text', 'line_to_search': 'x', 'line_replace': ''}, 'excepted_result': 'tet'},
+            {'arguments': {'data': 'text', 'line_to_search': 'a', 'line_replace': ''}, 'excepted_result': 'text'},
+            {'arguments': {'data': 'text', 'line_to_search': 't', 'line_replace': 'a', 'replace_count': 1},
+             'excepted_result': 'aext'},
+            {'arguments': {'data': 'texte', 'line_to_search': 'e', 'line_replace': 'a', 'replace_count': 1},
+             'excepted_result': 'taxte'},
+            {'arguments': {'data': 'textx', 'line_to_search': 'x', 'line_replace': 'a', 'replace_count': 1},
+             'excepted_result': 'teatx'},
+            {'arguments': {'data': 'text', 'line_to_search': 'a', 'line_replace': 'a', 'replace_count': 1},
+             'excepted_result': 'text'},
+            {'arguments': {'data': 'text', 'line_to_search': 't', 'line_replace': '', 'replace_count': 1},
+             'excepted_result': 'ext'},
+            {'arguments': {'data': 'texte', 'line_to_search': 'e', 'line_replace': '', 'replace_count': 1},
+             'excepted_result': 'txte'},
+            {'arguments': {'data': 'textx', 'line_to_search': 'x', 'line_replace': '', 'replace_count': 1},
+             'excepted_result': 'tetx'}
+        ]
+        for test_case in test_cases:
+            self.assertEqual(task4.DataParser(**test_case['arguments']).replace_line(), test_case['excepted_result'])
 
     def test_count_line(self):
         self.assertEqual(task4.DataParser('text', 't').count_line(), 2)

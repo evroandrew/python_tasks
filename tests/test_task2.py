@@ -11,11 +11,19 @@ class Test_Envelope_Compare(unittest.TestCase):
         env1 = task2.Envelope(1, 1)
         env2 = task2.Envelope(2, 2)
         env3 = task2.Envelope(0, 2)
-        self.assertEqual((task2.Envelope.env_compare(env1, env1)),
-                         'No envelope fits inside another. Envelope are the same.')
-        self.assertEqual((task2.Envelope.env_compare(env3, env1)), 'No envelope fits inside another.')
-        self.assertEqual((task2.Envelope.env_compare(env1, env2)), 'The first envelope fits into the second.')
-        self.assertEqual((task2.Envelope.env_compare(env2, env1)), 'The second envelope fits into the first.')
+        msgs = ['No envelope fits inside another. Envelope are the same.',
+                'No envelope fits inside another.',
+                'The first envelope fits into the second.',
+                'The second envelope fits into the first.']
+        test_cases = [
+            {'arguments': {'envelope1': env1, 'envelope2': env1}, 'excepted_result': msgs[0]},
+            {'arguments': {'envelope1': env3, 'envelope2': env1}, 'excepted_result': msgs[1]},
+            {'arguments': {'envelope1': env1, 'envelope2': env2}, 'excepted_result': msgs[2]},
+            {'arguments': {'envelope1': env2, 'envelope2': env1}, 'excepted_result': msgs[3]},
+            {'arguments': {'envelope1': env2, 'envelope2': env3}, 'excepted_result': msgs[1]}
+        ]
+        for test_case in test_cases:
+            self.assertEqual(task2.Envelope.env_compare(**test_case['arguments']), test_case['excepted_result'])
 
 
 if __name__ == '__main__':

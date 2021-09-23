@@ -21,6 +21,13 @@ class TestNumberInWords(unittest.TestCase):
         self.assertEqual(str(task5.NumberInWords(-234, 'ru')), 'минус двести тридцать четыре')
         self.assertEqual(str(task5.NumberInWords(-234981, 'ru')),
                          'минус двести тридцать четыре тысячи девятьсот восемьдесят один')
+        self.assertEqual(str(task5.NumberInWords(0, 'en')), 'zero')
+        self.assertEqual(str(task5.NumberInWords(1, 'en')), 'one')
+        self.assertEqual(str(task5.NumberInWords(250, 'en')), 'two hundred fifty')
+        self.assertEqual(str(task5.NumberInWords(200, 'en')), 'two hundred')
+        self.assertEqual(str(task5.NumberInWords(-234, 'en')), 'minus two hundred thirty four')
+        self.assertEqual(str(task5.NumberInWords(-234981, 'en')),
+                         'minus two hundred thirty four thousand nine hundred eighty one')
 
     def test_get_ranks(self):
         first_number = task5.NumberInWords(595)
