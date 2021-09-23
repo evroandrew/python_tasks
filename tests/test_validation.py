@@ -8,11 +8,6 @@ class TestValidation(unittest.TestCase):
     This class tests Validation.py
     """
 
-    def test_string_argument_validation(self):
-        V = Validation()
-        self.assertEqual(V.string_argument_validation('abc'), 'abc')
-        self.assertRaises(ValueError, V.string_argument_validation, '')
-
     def test_positive_float_validation(self):
         V = Validation()
         self.assertEqual(V.positive_float_validation('2'), 2)
