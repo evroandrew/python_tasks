@@ -1,6 +1,5 @@
 import unittest
 import task4
-from unittest.mock import patch, mock_open
 
 
 class TestFileParser(unittest.TestCase):

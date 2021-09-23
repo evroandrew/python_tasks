@@ -1,6 +1,5 @@
 import unittest
 from Validation import Validation
-import argparse
 
 
 class TestValidation(unittest.TestCase):

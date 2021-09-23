@@ -39,8 +39,5 @@ class FileWorker:
         try:
             with open(self.file_path, 'w') as f:
                 f.write(data)
-        except FileNotFoundError:
-            print(self.msg_file_not_found)
         except PermissionError:
             print(self.msg_permission)
-            return ''
