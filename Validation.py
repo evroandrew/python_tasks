@@ -16,9 +16,3 @@ class Validation:
         if value <= 0:
             raise ValueError
         return value
-
-    @staticmethod
-    def string_argument_validation(value):
-        if value == '':
-            raise ValueError
-        return value

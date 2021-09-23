@@ -1,9 +1,12 @@
 import argparse
+import pathlib
+
 from Validation import Validation
 from FileWorker import FileWorker
 
-msg_info = 'To count the number of occurrences of a string in a text file press 1. To replace a string with another ' \
-           'one in the file press 2. To exit enter any other value. '
+msg_info = 'To count the number of occurrences of a string in a text file press 1.\n' \
+           'To replace a string with another one in the file press 2.\n' \
+           'To exit enter any other value. '
 msg_file_path = 'Enter file path: '
 msg_line_count = 'Enter string to count:'
 msg_line_replace = 'Enter string to replace:'
@@ -77,17 +80,18 @@ def worker():
         FileWorker(file_path).write_file(new_data)
 
 
+errors = (argparse.ArgumentError, TypeError)
+
+
 def main():
     try:
         V = Validation()
         parser = argparse.ArgumentParser(
             description='Enter arguments - file path, and text for count or text to search and text to replace',
             exit_on_error=False)
-        parser.add_argument('file_path', nargs='?', default='', type=V.string_argument_validation,
-                            help='file path')
-        parser.add_argument('line_search', nargs='?', default='', type=V.string_argument_validation,
-                            help='line to search')
-        parser.add_argument('line_replace', nargs='?', default=42, help='line replace')
+        parser.add_argument('file_path', nargs='?', type=pathlib.Path, help='file path')
+        parser.add_argument('line_search', nargs='?', type=str, help='line to search')
+        parser.add_argument('line_replace', nargs='?', type=str, default=42, help='line replace')
         args = parser.parse_args()
         if args.line_replace == 42:
             data = FileWorker(args.file_path).read_file()
@@ -96,7 +100,7 @@ def main():
             data = FileWorker(args.file_path).read_file()
             new_data = DataParser(data, args.line_search, args.line_replace).replace_line()
             FileWorker(args.file_path).write_file(new_data)
-    except argparse.ArgumentError:
+    except errors:
         worker()
 
 
