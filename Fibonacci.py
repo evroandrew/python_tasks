@@ -44,12 +44,12 @@ def main():
                         exc = sys.exc_info()[1]
                         print(exc)
                         print('Use any numbers, instead of it.')
-                print(RangeOfFibonacciNumbers(a))
+                print(Fibonacci(a))
             except ValueError:
                 exc = sys.exc_info()[1]
                 print(f'Use any numbers, instead of: {exc}')
         else:
-            print(RangeOfFibonacciNumbers(args.a))
+            print(Fibonacci(args.a))
     except ValueError:
         exc = sys.exc_info()[1]
         print(f'Use any numbers, instead of: {exc}')
