@@ -1,13 +1,13 @@
 import argparse
 import sys
 
-msg_info = 'To output Fibonacci numbers within the specified range, enter range. '
+msg_info = 'To output Fibonacci numbers within the specified range, enter range: '
 msg_error = "Use any numbers."
 
 
 class RangeOfFibonacciNumbers:
     """
-    The main task of this class is to output Fibonacci numbers within the specified range, enter range.
+    The main task of this class is to output Fibonacci numbers within the specified range.
     """
 
     def __init__(self, a, b):
@@ -15,7 +15,7 @@ class RangeOfFibonacciNumbers:
 
     # modified str method to show a comma separated string of numbers
     def __repr__(self):
-        return ', '.join(str(x) for x in self.numbers() if self.a < x < self.b)
+        return ', '.join(str(x) for x in self.numbers() if self.a < x)
 
     # generator that produces a number in a given range
     def numbers(self):

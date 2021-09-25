@@ -5,7 +5,7 @@ msg_info = 'It is function which prints desired count of Fibonacci numbers. Ente
 msg_error = "Use any numbers."
 
 
-class RangeOfFibonacciNumbers:
+class Fibonacci:
     """
     The main task of this class is to print desired count of Fibonacci numbers.
     """
