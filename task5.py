@@ -86,7 +86,7 @@ class NumberInWords:
                  ('квадрилион', 'квадрилиона', 'квадрилионов'), ('квантилион', 'квантилиона', 'квантилионов'),
                  ('секстилион', 'секстилиона', 'секстилионов')]
 
-    def __init__(self, number=0, mode='en'):
+    def __init__(self, number=0, mode='ru'):
         self.mode = mode
         self.number = number
         if self.mode == 'en':
