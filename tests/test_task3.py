@@ -16,7 +16,9 @@ class TestTriangle(unittest.TestCase):
         self.assertTrue(task3.Triangle.triangle_may_exist([3, 4, 5]))
         self.assertTrue(task3.Triangle.triangle_may_exist([1, 2, 2]))
         self.assertTrue(task3.Triangle.triangle_may_exist([3, 3, 3]))
-        self.assertFalse(task3.Triangle.triangle_may_exist([1, 1, 2]))
+        self.assertTrue(task3.Triangle.triangle_may_exist([1, 1, 2]))
+        self.assertFalse(task3.Triangle.triangle_may_exist([1, 1, 0]))
+        self.assertFalse(task3.Triangle.triangle_may_exist([1, 1, 7]))
 
     def test_triangle_representation(self):
         self.assertEqual(task3.Triangle('a', 3, 4, 5).triangle_representation, ('a', 6.0))

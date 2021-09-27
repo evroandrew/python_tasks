@@ -31,10 +31,13 @@ class Triangle:
     @staticmethod
     def triangle_may_exist(sides):
         # check if a triangle with such sides can exist
+        for side in sides:
+            if side <= 0:
+                return False
         side_3 = max(sides)
         sides.remove(side_3)
         side_1, side_2 = sides
-        if side_1 + side_2 > side_3:
+        if side_1 + side_2 >= side_3:
             return True
         return False
 
