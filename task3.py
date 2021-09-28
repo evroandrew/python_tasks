@@ -1,8 +1,7 @@
 from math import sqrt
 
-msg_next = 'To add new triangle print "yes"/"y"'
-msg_info = 'Enter triangle name and three sides separated by commas.'
-msg_result_none = "No triangles in the list."
+MSG_NEXT = 'To add new triangle print "yes"/"y"'
+MSG_INFO = 'Enter triangle name and three sides separated by commas.'
 
 
 class Triangle:
@@ -29,7 +28,7 @@ class Triangle:
         return self.name, self.square  # check if a triangle with such sides can exist
 
     @staticmethod
-    def triangle_may_exist(sides):
+    def is_triangle(sides):
         # check if a triangle with such sides can exist
         for side in sides:
             if side <= 0:
@@ -44,6 +43,7 @@ class Triangle:
     @staticmethod
     def show_triangles(triangles):
         # displaying triangles in descending order of their area
+        msg_result_none = "No triangles in the list."
         triangles_list = '============= Triangles list: ==============='
         new_line = '\n'
         if len(triangles) == 0:
@@ -58,22 +58,22 @@ def main():
     triangles = []
     while True:
         try:
-            triangle_params = input(msg_info).split(',')
+            triangle_params = input(MSG_INFO).split(',')
             if len(triangle_params) != 4 or any(float(side) < 0 for side in triangle_params[1:]):
                 raise ValueError
         except ValueError:
-            print(msg_info)
+            print(MSG_INFO)
             continue
         triangle_params[1], triangle_params[2], triangle_params[3] = float(
             triangle_params[1]), float(triangle_params[2]), float(triangle_params[3])
-        if Triangle.triangle_may_exist([triangle_params[1], triangle_params[2], triangle_params[3]]):
+        if Triangle.is_triangle([triangle_params[1], triangle_params[2], triangle_params[3]]):
             triangle = Triangle(triangle_params[0], triangle_params[1], triangle_params[2], triangle_params[3])
             triangles.append(triangle.triangle_representation)
         else:
             print(
                 f'Triangle with such sides ({triangle_params[1]}, {triangle_params[2]}, {triangle_params[3]}) does '
                 f'not exist')
-        answer_next = input(msg_next).lower()
+        answer_next = input(MSG_NEXT).lower()
         if answer_next not in ['yes', 'y']:
             break
     print(Triangle.show_triangles(triangles))

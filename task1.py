@@ -1,7 +1,7 @@
 import argparse
-from Validation import Validation
+from _validator import Validator
 
-msg_info = "In this program we can create a chessboard. For this you should enter two positive integers."
+MSG_INFO = "In this program we can create a chessboard. For this you should enter two positive integers."
 
 
 class Chessboard:
@@ -53,12 +53,12 @@ class ChessboardGenerator:
 def main():
     try:
         parser = argparse.ArgumentParser(description='Enter two arguments - rows and cols for chessboard')
-        parser.add_argument('rows', type=Validation.positive_integer_validation, help='Rows number')
-        parser.add_argument('cols', type=Validation.positive_integer_validation, help='Cols number')
+        parser.add_argument('rows', type=Validator.positive_integer_validation, help='Rows number')
+        parser.add_argument('cols', type=Validator.positive_integer_validation, help='Cols number')
         args = parser.parse_args()
         Chessboard(args.rows, args.cols).show_board()
     except SystemExit:
-        print(msg_info)
+        print(MSG_INFO)
 
 
 if __name__ == '__main__':

@@ -42,24 +42,24 @@ class TestLuckyTickets(unittest.TestCase):
 
     def test_is_lucky(self):
         tickets = ['000001', '111111', '222222', '111122', '221111']
-        self.assertFalse(task6.LuckyTickets('Moscow', tickets).is_lucky(tickets[0]))
-        self.assertFalse(task6.LuckyTickets('Piter_alternative', tickets).is_lucky(tickets[0]))
-        self.assertFalse(task6.LuckyTickets('Piter', tickets).is_lucky(tickets[0]))
+
         self.assertTrue(task6.LuckyTickets('Moscow', tickets).is_lucky(tickets[1]))
+        self.assertTrue(task6.LuckyTickets('Moscow', tickets).is_lucky(tickets[2]))
         self.assertTrue(task6.LuckyTickets('Piter_alternative', tickets).is_lucky(tickets[1]))
-        self.assertFalse(task6.LuckyTickets('Piter', tickets).is_lucky(tickets[1]))
-        self.assertFalse(task6.LuckyTickets('Moscow', tickets).is_lucky(tickets[0]))
+        self.assertTrue(task6.LuckyTickets('Piter_alternative', tickets).is_lucky(tickets[2]))
+        self.assertTrue(task6.LuckyTickets('Piter_alternative', tickets).is_lucky(tickets[3]))
+        self.assertTrue(task6.LuckyTickets('Piter_alternative', tickets).is_lucky(tickets[4]))
+        self.assertTrue(task6.LuckyTickets('Piter', tickets).is_lucky(tickets[3]))
+        self.assertTrue(task6.LuckyTickets('Piter', tickets).is_lucky(tickets[4]))
+
         self.assertFalse(task6.LuckyTickets('Piter_alternative', tickets).is_lucky(tickets[0]))
         self.assertFalse(task6.LuckyTickets('Piter', tickets).is_lucky(tickets[0]))
-        self.assertTrue(task6.LuckyTickets('Moscow', tickets).is_lucky(tickets[2]))
-        self.assertTrue(task6.LuckyTickets('Piter_alternative', tickets).is_lucky(tickets[2]))
+        self.assertFalse(task6.LuckyTickets('Piter', tickets).is_lucky(tickets[1]))
+        self.assertFalse(task6.LuckyTickets('Piter', tickets).is_lucky(tickets[0]))
         self.assertFalse(task6.LuckyTickets('Piter', tickets).is_lucky(tickets[2]))
+        self.assertFalse(task6.LuckyTickets('Moscow', tickets).is_lucky(tickets[0]))
         self.assertFalse(task6.LuckyTickets('Moscow', tickets).is_lucky(tickets[3]))
-        self.assertTrue(task6.LuckyTickets('Piter_alternative', tickets).is_lucky(tickets[3]))
-        self.assertTrue(task6.LuckyTickets('Piter', tickets).is_lucky(tickets[3]))
         self.assertFalse(task6.LuckyTickets('Moscow', tickets).is_lucky(tickets[4]))
-        self.assertTrue(task6.LuckyTickets('Piter_alternative', tickets).is_lucky(tickets[4]))
-        self.assertTrue(task6.LuckyTickets('Piter', tickets).is_lucky(tickets[4]))
 
 
 if __name__ == '__main__':

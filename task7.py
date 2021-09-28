@@ -1,9 +1,7 @@
 import argparse
-import sys
-from Validation import Validation
+from _validator import Validator
 
-msg_info = 'To output natural numbers row whose square is less than given: '
-msg_error = "No integer was entered. You should enter an integer."
+MSG_INFO = 'To output natural numbers row whose square is less than given: '
 
 
 class NumbersRow:
@@ -22,13 +20,12 @@ class NumbersRow:
 def main():
     try:
         parser = argparse.ArgumentParser(description='Output natural numbers row')
-        parser.add_argument('number_range', type=Validation.positive_integer_validation,
+        parser.add_argument('number_range', type=Validator.positive_integer_validation,
                             help='range for numbers whose square is less than given')
         args = parser.parse_args()
         print(NumbersRow(args.number_range))
-    except ValueError:
-        exc = sys.exc_info()[1]
-        print(f'Use positive integer, instead of: {exc}')
+    except ValueError as exc:
+        print(f'Use positive integer, instead of: {str(exc)}')
 
 
 if __name__ == '__main__':

@@ -1,11 +1,11 @@
 import unittest
-from FileWorker import FileWorker
+from _fileworker import FileWorker
 from unittest.mock import patch, mock_open
 
 
 class TestFileWorker(unittest.TestCase):
     """
-    This class tests FileWorker.py
+    This class tests _fileworker.py
     """
 
     def test_read_file(self):

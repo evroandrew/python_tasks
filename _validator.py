@@ -1,4 +1,4 @@
-class Validation:
+class Validator:
     """
     The main task of this class is to validate data.
     """

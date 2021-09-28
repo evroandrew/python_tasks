@@ -1,6 +1,6 @@
-msg_info = 'To convert an integer to uppercase enter it: '
-msg_error = "no integer was entered. You should enter an integer."
-msg_mode = 'To select the language to transform the number into, enter en or ru: '
+MSG_INFO = 'To convert an integer to uppercase enter it: '
+MSG_MODE = 'To select the language to transform the number into, enter en or ru: '
+MSG_ERROR = "no integer was entered. You should enter an integer."
 
 
 class NumberInWords:
@@ -179,14 +179,14 @@ class NumberInWords:
 
 def main():
     try:
-        number = int(input(msg_info))
-        mode = str(input(msg_mode))
+        number = int(input(MSG_INFO))
+        mode = str(input(MSG_MODE))
         if mode in ['en', 'ru']:
             print(NumberInWords(number, mode))
         else:
             print(NumberInWords(number))
     except ValueError:
-        print(msg_error)
+        print(MSG_ERROR)
 
 
 if __name__ == '__main__':

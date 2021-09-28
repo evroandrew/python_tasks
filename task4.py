@@ -1,16 +1,10 @@
 import argparse
 import pathlib
+from _fileworker import FileWorker
 
-from Validation import Validation
-from FileWorker import FileWorker
-
-msg_info = 'To count the number of occurrences of a string in a text file press 1.\n' \
+MSG_INFO = 'To count the number of occurrences of a string in a text file press 1.\n' \
            'To replace a string with another one in the file press 2.\n' \
            'To exit enter any other value. '
-msg_file_path = 'Enter file path: '
-msg_line_count = 'Enter string to count:'
-msg_line_replace = 'Enter string to replace:'
-msg_line_search = 'Enter string to search:'
 
 
 class DataParser:
@@ -59,7 +53,10 @@ class DataParser:
 
 # method of working with dialog code
 def worker():
-    choice = input(msg_info)
+    msg_file_path = 'Enter file path: '
+    msg_line_count = 'Enter string to count:'
+    msg_line_replace = 'Enter string to replace:'
+    choice = input(MSG_INFO)
     if choice != '1' and choice != '2':
         return
     file_path = input(msg_file_path)
@@ -80,12 +77,11 @@ def worker():
         FileWorker(file_path).write_file(new_data)
 
 
-errors = (argparse.ArgumentError, TypeError)
+ERRORS = (argparse.ArgumentError, TypeError)
 
 
 def main():
     try:
-        V = Validation()
         parser = argparse.ArgumentParser(
             description='Enter arguments - file path, and text for count or text to search and text to replace',
             exit_on_error=False)
@@ -100,7 +96,7 @@ def main():
             data = FileWorker(args.file_path).read_file()
             new_data = DataParser(data, args.line_search, args.line_replace).replace_line()
             FileWorker(args.file_path).write_file(new_data)
-    except errors:
+    except ERRORS:
         worker()
 
 

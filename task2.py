@@ -1,11 +1,8 @@
-from Validation import Validation
+from _validator import Validator
 
-msg_next = 'To process the next pair of envelopes print "yes"/"y"'
-msg_info = 'Parameters of envelopes must be positive numbers. The program determines whether one envelope can be ' \
+MSG_NEXT = 'To process the next pair of envelopes print "yes"/"y"'
+MSG_INFO = 'Parameters of envelopes must be positive numbers. The program determines whether one envelope can be ' \
            'nested inside another. Please, enter envelope parameters.'
-msg_result_first_in_second = 'The first envelope fits into the second.'
-msg_result_second_in_first = 'The second envelope fits into the first.'
-msg_result_none = "No envelope fits inside another."
 
 
 class Envelope:
@@ -22,6 +19,9 @@ class Envelope:
         """
         envelope comparison method - check if one envelope fits into another
         """
+        msg_result_none = "No envelope fits inside another."
+        msg_result_first_in_second = 'The first envelope fits into the second.'
+        msg_result_second_in_first = 'The second envelope fits into the first.'
         if envelope1.length == envelope2.length and envelope1.width == envelope2.width:
             return msg_result_none + " Envelope are the same."
         if envelope1.length > envelope2.length:
@@ -34,18 +34,18 @@ class Envelope:
 def main():
     while True:
         try:
-            V = Validation()
-            length1 = V.positive_float_validation(input('Enter a:'))
-            width1 = V.positive_float_validation(input('Enter b:'))
-            length2 = V.positive_float_validation(input('Enter c:'))
-            width2 = V.positive_float_validation(input('Enter d:'))
+            validation = Validator()
+            length1 = validation.positive_float_validation(input('Enter a:'))
+            width1 = validation.positive_float_validation(input('Enter b:'))
+            length2 = validation.positive_float_validation(input('Enter c:'))
+            width2 = validation.positive_float_validation(input('Enter d:'))
         except ValueError:
-            print(msg_info)
+            print(MSG_INFO)
             continue
         env1 = Envelope(length1, width1)
         env2 = Envelope(length2, width2)
         print(Envelope.env_compare(env1, env2))
-        answer_next = input(msg_next).lower()
+        answer_next = input(MSG_NEXT).lower()
         if answer_next not in ['yes', 'y']:
             break
 
