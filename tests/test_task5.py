@@ -29,12 +29,9 @@ class TestNumberInWords(unittest.TestCase):
                          'minus two hundred thirty four thousand nine hundred eighty one')
 
     def test_get_ranks(self):
-        first_number = task5.NumberInWords(595)
-        self.assertEqual(first_number.get_ranks(), [595])
-        second_number = task5.NumberInWords(595150)
-        self.assertEqual(second_number.get_ranks(), [595, 150])
-        third_number = task5.NumberInWords(595150200)
-        self.assertEqual(third_number.get_ranks(), [595, 150, 200])
+        self.assertEqual(task5.NumberInWords(595).get_ranks(), [595])
+        self.assertEqual(task5.NumberInWords(595150).get_ranks(), [595, 150])
+        self.assertEqual(task5.NumberInWords(595150200).get_ranks(), [595, 150, 200])
 
     def test_generate_hundred_in_words(self):
         self.assertEqual(task5.NumberInWords(0, 'en').generate_hundred_in_words(500), 'five hundred')

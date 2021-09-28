@@ -17,6 +17,7 @@ class TestTriangle(unittest.TestCase):
         self.assertTrue(task3.Triangle.is_triangle([1, 2, 2]))
         self.assertTrue(task3.Triangle.is_triangle([3, 3, 3]))
         self.assertTrue(task3.Triangle.is_triangle([1, 1, 2]))
+
         self.assertFalse(task3.Triangle.is_triangle([1, 1, 0]))
         self.assertFalse(task3.Triangle.is_triangle([1, 1, 7]))
         self.assertFalse(task3.Triangle.is_triangle([-1, 1, 2]))
