@@ -1,5 +1,6 @@
 import unittest
 import task1
+from unittest.mock import patch, mock_open
 
 
 class TestChessboard(unittest.TestCase):
@@ -7,18 +8,19 @@ class TestChessboard(unittest.TestCase):
     This class tests task1.py
     """
 
-    def test_show_board(self):
+    @patch('builtins.print')
+    def test_show_board(self, mocked_print):
         test_cases = [
-            {'arguments': {'rows': 2, 'cols': 2}, 'excepted_result': print('* \n *\n')},
-            {'arguments': {'rows': 1, 'cols': 1}, 'excepted_result': print('*\n')},
-            {'arguments': {'rows': 3, 'cols': 3}, 'excepted_result': print('* *\n * \n* *\n')},
-            {'arguments': {'rows': 2, 'cols': 2, 'cell1': '1', 'cell2': '2'}, 'excepted_result': print('12\n21\n')},
-            {'arguments': {'rows': 1, 'cols': 1, 'cell1': '%', 'cell2': '$'}, 'excepted_result': print('%\n')},
-            {'arguments': {'rows': 3, 'cols': 3, 'cell1': '@', 'cell2': '!'},
-             'excepted_result': print('!@!\n@!@\n!@!\n')},
+            {'arguments': {'rows': 2, 'cols': 2}, 'excepted_result': '* \n *\n'},
+            {'arguments': {'rows': 1, 'cols': 1}, 'excepted_result': '*\n'},
+            {'arguments': {'rows': 3, 'cols': 3}, 'excepted_result': '* *\n * \n* *\n'},
+            {'arguments': {'rows': 2, 'cols': 2, 'cell1': '1', 'cell2': '2'}, 'excepted_result': '12\n21\n'},
+            {'arguments': {'rows': 1, 'cols': 1, 'cell1': '%', 'cell2': '$'}, 'excepted_result': '%\n'},
+            {'arguments': {'rows': 3, 'cols': 3, 'cell1': '!', 'cell2': '@'}, 'excepted_result': '!@!\n@!@\n!@!\n'},
         ]
         for test_case in test_cases:
-            self.assertEqual(task1.Chessboard(**test_case['arguments']).show_board(), test_case['excepted_result'])
+            task1.Chessboard(**test_case['arguments']).show_board()
+            mocked_print.assert_called_with(test_case['excepted_result'])
 
     def test_create_lines(self):
         test_cases = [
