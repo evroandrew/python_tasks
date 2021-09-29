@@ -61,6 +61,10 @@ class TestLuckyTickets(unittest.TestCase):
         self.assertFalse(task6.LuckyTickets('Moscow', tickets).is_lucky(tickets[3]))
         self.assertFalse(task6.LuckyTickets('Moscow', tickets).is_lucky(tickets[4]))
 
+        self.assertFalse(task6.LuckyTickets().lucky_moscow(tickets[4]))
+        self.assertTrue(task6.LuckyTickets().lucky_piter(tickets[4]))
+        self.assertTrue(task6.LuckyTickets().lucky_piter_task(tickets[4]))
+
 
 if __name__ == '__main__':
     unittest.main()
