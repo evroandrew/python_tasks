@@ -6,9 +6,7 @@ MSG_INFO = "In this program we can create a chessboard. For this you should ente
 
 class Chessboard:
     """
-    The main purpose of this class is to show a chessboard with two parameters:
-    rows - int, basically 0,
-    cols - int, basically 0.
+    The main purpose of this class is to show a chessboard.
     """
 
     def __init__(self, rows=0, cols=0, cell1='*', cell2=' '):

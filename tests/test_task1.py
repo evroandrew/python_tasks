@@ -17,6 +17,7 @@ class TestChessboard(unittest.TestCase):
             {'arguments': {'rows': 2, 'cols': 2, 'cell1': '1', 'cell2': '2'}, 'excepted_result': '12\n21\n'},
             {'arguments': {'rows': 1, 'cols': 1, 'cell1': '%', 'cell2': '$'}, 'excepted_result': '%\n'},
             {'arguments': {'rows': 3, 'cols': 3, 'cell1': '!', 'cell2': '@'}, 'excepted_result': '!@!\n@!@\n!@!\n'},
+            {'arguments': {'rows': -3, 'cols': -3, 'cell1': '!', 'cell2': '@'}, 'excepted_result': ''},
         ]
         for test_case in test_cases:
             task1.Chessboard(**test_case['arguments']).show_board()
@@ -30,6 +31,7 @@ class TestChessboard(unittest.TestCase):
             {'arguments1': {'cols': 2}, 'arguments0': {'cell1': '1', 'cell2': '2'}, 'excepted_result': ('21', '12')},
             {'arguments1': {'cols': 1}, 'arguments0': {'cell1': '%', 'cell2': '$'}, 'excepted_result': ('$', '%')},
             {'arguments1': {'cols': 3}, 'arguments0': {'cell1': '@', 'cell2': '!'}, 'excepted_result': ('!@!', '@!@')},
+            {'arguments1': {'cols': -3}, 'arguments0': {'cell1': '@', 'cell2': '!'}, 'excepted_result': ('', '')},
         ]
         for test_case in test_cases:
             self.assertEqual(
@@ -47,6 +49,8 @@ class TestChessboard(unittest.TestCase):
              'excepted_result': '%\n'},
             {'arguments1': {'cols': 3, 'rows': 3}, 'arguments0': {'cell1': '@', 'cell2': '!'},
              'excepted_result': '@!@\n!@!\n@!@\n'},
+            {'arguments1': {'cols': -1, 'rows': -5}, 'arguments0': {'cell1': '@', 'cell2': '!'},
+             'excepted_result': ''},
         ]
         for test_case in test_cases:
             self.assertEqual(
