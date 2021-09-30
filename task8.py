@@ -4,6 +4,7 @@ MSG_INFO = 'To output Fibonacci numbers within the specified range, enter range:
 MSG_ERROR = 'Use any numbers, instead of you entered.'
 MSG_FIRST_ELEMENT = 'Enter first argument of range: '
 MSG_SECOND_ELEMENT = 'Enter second argument of range: '
+ERRORS = (argparse.ArgumentError, TypeError, argparse.ArgumentTypeError)
 
 
 class RangeOfFibonacciNumbers:
@@ -25,9 +26,6 @@ class RangeOfFibonacciNumbers:
         while first_number < self.b:
             yield first_number
             first_number, second_number = second_number, first_number + second_number
-
-
-ERRORS = (argparse.ArgumentError, TypeError, argparse.ArgumentTypeError)
 
 
 def main():

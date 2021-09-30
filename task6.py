@@ -23,7 +23,7 @@ class LuckyTickets:
         return sum([int(i) for i in ticket if int(i) % 2 == 0]) == \
                sum([int(i) for i in ticket if int(i) % 2 != 0])
 
-    def __init__(self, func_chose='Moscow', tickets=[]):
+    def __init__(self, func_chose='Moscow', tickets=None):
         lucky_validator = {'Moscow': self.lucky_moscow,
                            'Piter_alternative': self.lucky_piter,
                            'Piter': self.lucky_piter_task}
@@ -34,7 +34,7 @@ class LuckyTickets:
 
         self.specified_method = specified_method[func_chose]
         self.lucky_validator = lucky_validator[func_chose]
-        self.tickets = tickets
+        self.tickets = tickets or []
 
     # successful ticket method
     def is_lucky(self, ticket):
@@ -61,9 +61,9 @@ MSG_FILE_PATH = 'Enter file path: '
 def main():
     try:
         file_path = input(MSG_FILE_PATH)
-        if file_path != '':
+        if file_path:
             data = FileWorker(file_path).read_file_by_line()
-            if data != '':
+            if data:
                 methods = ['Moscow', 'Piter', 'Piter_alternative']
                 if data[0] in methods:
                     tickets = []
