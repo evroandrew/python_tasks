@@ -24,17 +24,16 @@ class LuckyTickets:
                sum([int(i) for i in ticket if int(i) % 2 != 0])
 
     def __init__(self, func_chose='Moscow', tickets=[]):
-        func_chose = func_chose
-        lucky_validation = {'Moscow': self.lucky_moscow,
-                            'Piter_alternative': self.lucky_piter,
-                            'Piter': self.lucky_piter_task}
+        lucky_validator = {'Moscow': self.lucky_moscow,
+                           'Piter_alternative': self.lucky_piter,
+                           'Piter': self.lucky_piter_task}
 
-        specified_check = {'Moscow': 'Moscow',
-                           'Piter_alternative': 'Piter',
-                           'Piter': 'Piter task'}
+        specified_method = {'Moscow': 'Moscow',
+                            'Piter_alternative': 'Piter',
+                            'Piter': 'Piter task'}
 
-        self.specified_method = specified_check[func_chose]
-        self.lucky_validator = lucky_validation[func_chose]
+        self.specified_method = specified_method[func_chose]
+        self.lucky_validator = lucky_validator[func_chose]
         self.tickets = tickets
 
     # successful ticket method
