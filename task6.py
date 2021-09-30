@@ -55,11 +55,12 @@ class LuckyTickets:
 
 
 MSG_INFO = 'Program counts number of lucky tickets. Please, enter valid file path to chose counting algorithm.'
+MSG_FILE_PATH = 'Enter file path: '
 
 
 def main():
     try:
-        file_path = input('Enter file path: ')
+        file_path = input(MSG_FILE_PATH)
         if file_path != '':
             data = FileWorker(file_path).read_file_by_line()
             if data != '':

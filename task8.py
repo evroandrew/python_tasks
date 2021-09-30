@@ -1,6 +1,9 @@
 import argparse
 
 MSG_INFO = 'To output Fibonacci numbers within the specified range, enter range: '
+MSG_ERROR = 'Use any numbers, instead of you entered.'
+MSG_FIRST_ELEMENT = 'Enter first argument of range: '
+MSG_SECOND_ELEMENT = 'Enter second argument of range: '
 
 
 class RangeOfFibonacciNumbers:
@@ -40,22 +43,22 @@ def main():
                 a = 'abs'
                 while a == 'abs':
                     try:
-                        a = float(input('Enter first argument of range: '))
+                        a = float(input(MSG_FIRST_ELEMENT))
                     except ValueError as exc:
-                        print(f'Use any numbers, instead of: {str(exc)}')
+                        print(f'{MSG_ERROR} {str(exc)}')
                 b = 'abs'
                 while b == 'abs':
                     try:
-                        b = float(input('Enter second argument of range: '))
+                        b = float(input(MSG_SECOND_ELEMENT))
                     except ValueError as exc:
-                        print(f'Use any numbers, instead of: {str(exc)}')
+                        print(f'{MSG_ERROR} {str(exc)}')
                 print(RangeOfFibonacciNumbers(a, b))
             except ValueError as exc:
-                print(f'Use any numbers, instead of: {str(exc)}')
+                print(f'{MSG_ERROR} {str(exc)}')
         else:
             print(RangeOfFibonacciNumbers(args.a, args.b))
     except ERRORS as exc:
-        print(f'Use any numbers, instead of: {str(exc)}')
+        print(f'{MSG_ERROR} {str(exc)}')
 
 
 if __name__ == '__main__':
